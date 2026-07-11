@@ -1,9 +1,9 @@
-function Profilecard(){
+function Profilecard({name,role,image}){
     return (
         <div>
-            <img src="https://via.placeholder.com/100" alt="profile" />
-            <p>shahzaib </p>
-            <p>aspiring mern developer </p>
+            <img src={image} />
+            <p>{name} </p>
+            <p>{role} </p>
         </div>
 
     )
