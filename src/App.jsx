@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Game from "./components/Game";
 import Counter from "./components/Counter";
 import { useState } from "react";
+import ScratchTest from "./ScratchTest";
 /*const profiles = [
   { name: "Shahzaib", role: "Aspiring MERN Developer", image: "https://via.placeholder.com/100" },
   { name: "Alex", role: "Backend Engineer", image: "https://via.placeholder.com/100" },
@@ -13,7 +14,7 @@ import { useState } from "react";
 */
 
 function App() {
-  const [dark,setDark]=useState(false)
+  /*const [dark,setDark]=useState(false)
   const [games,setGames] =useState([
   {name:"gta5",desc:" open world game",image:"https://placehold.co/100",id:1},
   {name:"cod",desc:" war game ",image:"https://placehold.co/100",id:2},
@@ -50,9 +51,9 @@ function editdesc(id){
       game.id===id?{...game,desc:newdesc}:game
     ))
   
-}
+}*/
   return (
-    <div className={`${dark?"bg-gray-700":"bg-gray-100"} max-w-4xl mx-auto`}>
+   /* <div className={`${dark?"bg-gray-700":"bg-gray-100"} max-w-4xl mx-auto`}>
     <div className="bg-purple-500 text-white p-4 text-center flex justify-between" >
         <p className="col-span-3 text-center">{games.length}  games in library </p>
         <div>
@@ -81,6 +82,11 @@ function editdesc(id){
 
      <Counter/>
     <Footer />
+    </div>*/
+
+    <div>
+<ScratchTest/>
+
     </div>
   );
 }
