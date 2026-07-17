@@ -5,6 +5,7 @@ import Game from "./components/Game";
 import Counter from "./components/Counter";
 import { useState } from "react";
 import ScratchTest from "./ScratchTest";
+import PokemonList from "./components/PokemonLIst";
 /*const profiles = [
   { name: "Shahzaib", role: "Aspiring MERN Developer", image: "https://via.placeholder.com/100" },
   { name: "Alex", role: "Backend Engineer", image: "https://via.placeholder.com/100" },
@@ -85,8 +86,8 @@ function editdesc(id){
     </div>*/
 
     <div>
-<ScratchTest/>
 
+<PokemonList/>
     </div>
   );
 }
