@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import Postform from "./Postform"
 
 function Contactform (){
     const {register,handleSubmit,formState:{ errors }}= useForm()
@@ -30,7 +31,7 @@ function Contactform (){
             {errors.message&&<p>{errors.message.message}</p>}
             <button type="submit" className="w-40 bg-red-500" > Submit </button>
         </form>}
-       
+        <Postform/>
         </div>
      )
 }

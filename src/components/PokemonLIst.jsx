@@ -1,30 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import useFetch from "../hooks/useFetch";
+import { ThemeContext } from "../contexts/Themecontext";
 
 function PokemonList() {
-  const [pokemons, setPokemons] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
   const [selected, setSelected] = useState(null);
   const [details, setDetails] = useState(null);
   const [search ,setSearch]= useState("")
+  const [detailsError, setDetailsError] = useState(null);
 
-  useEffect(() => {
-    async function datafetch() {
-      try {
-        const response = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=20",
-        );
+  const {theme}=useContext(ThemeContext)
 
-        setPokemons(response.data.results);
-      } catch (err) {
-        setError("failed to load data ");
-      } finally {
-        setLoading(false);
-      }
-    }
-    datafetch();
-  }, []);
+
+  const {data,error,loading}=useFetch("https://pokeapi.co/api/v2/pokemon?limit=20")
+
   useEffect(() => {
     async function detsfetch() {
       try {
@@ -33,7 +23,7 @@ function PokemonList() {
         );
         setDetails(responsepok.data);
       } catch (err) {
-        setError("failed to load data ");
+        setDetailsError("failed to load data ");
       }
     }
     selected && detsfetch();
@@ -46,13 +36,13 @@ function PokemonList() {
     setDetails(null);
     setSelected(null);
   }
-
+const pokemons =data?.results ??[]
  const filteredpokemons= pokemons.filter((pokemon)=>pokemon.name.toLowerCase().includes(search.toLowerCase()))
  const pokemonstoDisplay=search?filteredpokemons:pokemons
 
   return (
-    <div>
-      <h1 className=" text-4xl font-bold text-center py-6">
+    <div className={`${theme==="light"?"bg-gray-100":"bg-black"}`}>
+      <h1 className={`text-4xl font-bold text-center py-6 ${theme==="light"?"text-black":"text-white"}`}>
         {" "}
         Pokemons List
       </h1>
@@ -70,6 +60,7 @@ function PokemonList() {
       <div className={details ? "flex justify-center" : "grid grid-cols-3 "}>
         {details ? (
           <div className="text-xl text-center mb-4 ">
+            <p>{detailsError}</p>
             <button
               className="bg-red-800 rounded-full p-3 mb-6 mt-2"
               onClick={goback}

@@ -1,8 +1,10 @@
+import { useDispatch } from "react-redux";
 import Footer from "./Footer";
 import Game from "./Game";
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { addtocart } from "../redux/cartslice";
 
 
 
@@ -16,6 +18,8 @@ function Gamef(){
   {name:"fifa",desc:" football game ",image:"https://placehold.co/100",id:3},
   {name:"far cry 5",desc:" tactics game ",image:"https://placehold.co/100",id:4}
 ])
+
+const dispatch= useDispatch()
 function addgame(){
   return (
     setGames([...games,{name:"need for speed",desc:"racing game ",image:"https://placehold.co/100",id:5}])
@@ -61,9 +65,9 @@ function editdesc(id){
     <button onClick={darke}>Dark mode</button>
     </div>
         </div>
-    <h1 className="font-bold text-3xl text-center">Hello, I'm building this myself</h1>
+  
  
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2 ">
     {games.length===0?<p className="col-span-3 text-center">no games found </p>:games.map((game)=>(
       <div>
       <Link to={`/games/${game.id}`}>
@@ -71,6 +75,7 @@ function editdesc(id){
       </Link>
       <button onClick={()=>deletegame(game.id)}>Delete game</button>
       <button onClick={()=>editdesc(game.id)}>editdesc</button>
+      <button onClick={()=>dispatch(addtocart(game))} className="border rounded bg-red-400 p-2 rounded-full"> add to cart </button>
       
       </div>
       
